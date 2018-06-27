@@ -1,0 +1,61 @@
+{% extends "Blog/sidebarLayout.html.twig" %}
+
+{% block pageTitle %}
+    Lista rejestracji | {{ parent() }}
+{% endblock %}
+
+{% block contentContainer %}
+    <article class="col-md-8">
+        <h1>Lista rejestracji</h1>
+
+        <h1>Rejestracja #{{ register.id }}</h1>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Szczegóły rejestracji
+                <a class="btn btn-info btn-sm pull-right panel-btn" href="{{ path('edu_blog_admin_listing') }}">Powrót</a>
+                <a class="btn btn-warning btn-sm pull-right panel-btn" href="{{ path('edu_blog_admin_update', {'id': register.id}) }}">Edytuj</a>
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered table-striped table-hover">
+                    <tr>
+                        <th>ID</th>
+                        <td>{{ register.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Imię i nazwisko</th>
+                        <td>{{ register.name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{ register.email }}</td>
+                    </tr>
+                    <tr>
+                        <th>Płeć</th>
+                        <td>{{ register.sex }}</td>
+                    </tr>
+                    <tr>
+                        <th>Data urodzenia</th>
+                        <td>{{ register.birthdate|date('d.m.Y') }}</td>
+                    </tr>
+                    <tr>
+                        <th>Kraj</th>
+                        <td>{{ register.country }}</td>
+                    </tr>
+                    <tr>
+                        <th>Kurs</th>
+                        <td>{{ register.course }}</td>
+                    </tr>
+                    <tr>
+                        <th>Inwestycje</th>
+                        <td>{{ register.invest|join(', ') }}</td>
+                    </tr>
+                    <tr>
+                        <th>Dodatkowy komentarz</th>
+                        <td>{{ register.comments }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </article>
+{% endblock %}

@@ -1,0 +1,4 @@
+invest_training:
+    resource: "@InvestTrainingBundle/Controller/"
+    type:     annotation
+    prefix:   /

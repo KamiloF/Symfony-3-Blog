@@ -1,0 +1,99 @@
+{% extends "Blog/sidebarLayout.html.twig" %}
+
+{% block pageTitle %}
+    Dziennik | {{ parent() }}
+{% endblock %}
+
+{% block contentContainer %}
+
+    <article class="col-md-8 journal">
+        <h1>Domowy dzienniczek inwestora</h1>
+        <p>Na początku swojej przygoty z inwestowaniem postanowiłem, że każdą inwestycję będę zapisywał. W ten sposób powstał poniższy dziennik, który prezentuje moją aktywność na giełdzie. Przez ostatnie pare miesięcy wiele się działo. Na zmianę raz zyskiwałem, raz traciłem.</p>
+        <h4>Wszystkich inwestycji: {{ history|length }}</h4>
+
+        {#<pre>{{ dump(history) }}</pre>#}
+
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+            <tr>
+                <th>Spółka</th>
+                <th>Data rozpoczęcia</th>
+                <th>Śr. kurs nabycia</th>
+                <th>Ilość</th>
+                <th>Data zakończenia</th>
+                <th>Śr. kurs sprzedaży</th>
+                <th>Wynik</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for row in history %}
+                {% if row['end_date'] is not null %}
+                    {% set result = (row['selling_price']*row['quantity']) - (row['purchase_price']*row['quantity']) %}
+
+                    {% if result > 0 %}
+                        <tr class="success">
+                    {% else %}
+                        <tr class="danger">
+                    {% endif %}
+                {% else %}
+                    <tr>
+                {% endif %}
+                <td>{{ row['company_name']|upper }}</td>
+                <td>{{ row['start_date']|date('d.m.Y') }}</td>
+                <td>{{ row['purchase_price']|number_format(2, ',', ' ') }} zł</td>
+                <td>{{ row['quantity']|number_format(0, ',', ' ') }}</td>
+                <td>{{ row['end_date'] is not null ? row['end_date']|date('d.m.Y') : '---'}}</td>
+                <td>{{ row['selling_price'] is not null ? row['selling_price']|number_format(2, ',', ' ')~ ' zł' : '---'}}</td>
+                <td>{{ row['end_date'] is not null ? result|number_format(2, ',', ' ')~ ' zł' : '---' }}</td>
+                </tr>
+
+            {% else %}
+                <tr>
+                    <td colspan="7">Brak wpisów w historii</td>
+                </tr>
+            {% endfor %}
+
+            {#<tr class="success">#}
+                {#<td>ATREM</td>#}
+                {#<td>03.03.2012</td>#}
+                {#<td>7,50 zł</td>#}
+                {#<td>1 000</td>#}
+                {#<td>05.05.2012</td>#}
+                {#<td>9,10 zł</td>#}
+                {#<td></td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<td>DEBICA</td>#}
+                {#<td>12.01.2013</td>#}
+                {#<td>96,20 zł</td>#}
+                {#<td>100</td>#}
+                {#<td>---</td>#}
+                {#<td>---</td>#}
+                {#<td>---</td>#}
+            {#</tr>#}
+            {#<tr class="success">#}
+                {#<td>ALCHEMIA</td>#}
+                {#<td>05.03.2012</td>#}
+                {#<td>5,20 zł</td>#}
+                {#<td>1 500</td>#}
+                {#<td>15.09.2013</td>#}
+                {#<td>9,30 zł</td>#}
+                {#<td></td>#}
+            {#</tr>#}
+            {#<tr class="danger">#}
+                {#<td>VOTUM</td>#}
+                {#<td>12.06.2012</td>#}
+                {#<td>5,82 zł</td>#}
+                {#<td>4 000</td>#}
+                {#<td>28.12.2013</td>#}
+                {#<td>4,30 zł</td>#}
+                {#<td></td>#}
+            {#</tr>#}
+            </tbody>
+        </table>
+    </article>
+
+{% endblock %}
+
+

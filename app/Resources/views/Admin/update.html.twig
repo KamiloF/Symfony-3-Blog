@@ -1,0 +1,16 @@
+{% extends "Blog/sidebarLayout.html.twig" %}
+
+{% block pageTitle %}
+    Lista rejestracji | {{ parent() }}
+{% endblock %}
+
+{% block contentContainer %}
+    <article class="col-md-8">
+        <h1>Lista rejestracji</h1>
+
+        <h1>Rejestracja #{{ register.id }}</h1>
+
+        {{ form(form, {'attr': {'novalidate': 'true'}}) }}
+
+    </article>
+{% endblock %}

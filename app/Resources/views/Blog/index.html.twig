@@ -1,0 +1,41 @@
+{% extends "base.html.twig" %}
+
+{% block pageTitle %}
+    Strona główna | {{ parent() }}
+{% endblock %}
+
+{% block pageContainer %}
+
+    <div class="jumbotron">
+        <div class="container">
+            <div class="text">
+                <h1>Być jak Warren Buffett!</h1>
+                <p>Jest powszechnie uważany za jednego z najlepszych inwestorów na świecie. Warren Buffett, często określany jako "legendarny inwestor", jest głównym akcjonariuszem, przewodniczącym rady nadzorczej oraz prezesem Berkshire Hathaway. Od wielu lat konsekwentnie utrzymuje się na szczytach list najbogatszych ludzi świata.</p>
+                <p><a class="btn btn-primary btn-lg" href="dziennik.html" role="button">Moja droga na szczyt &raquo;</a></p>
+            </div>
+            <img class="bull" src="{{ asset('bundles/investtraining/img/bull.jpg') }}" alt="">
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+
+            <div class="col-md-4">
+                {% include 'Blog/Widgets/gpwWidget.html.twig' %}
+            </div>
+
+            <div class="col-md-4">
+                {% include 'Blog/Widgets/followingWidget.html.twig' %}
+            </div>
+
+            <div class="col-md-4">
+                {% include 'Blog/Widgets/walletWidget.html.twig' %}
+            </div>
+        </div>
+
+    </div> <!-- /container -->
+
+{% endblock %}
+
+

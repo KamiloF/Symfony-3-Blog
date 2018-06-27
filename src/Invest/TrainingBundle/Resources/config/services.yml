@@ -1,0 +1,4 @@
+services:
+#    invest_training.example:
+#        class: Invest\TrainingBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

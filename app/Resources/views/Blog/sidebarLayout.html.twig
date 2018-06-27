@@ -1,0 +1,39 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+    <link href="{{ asset('bundles/investtraining/css/sidebar.css')}}" rel="stylesheet">
+
+{% endblock %}
+
+{% block pageContainer %}
+
+    <div class="container">
+        <!-- Example row of columns -->
+        <div class="row extra-padding">
+
+            {% block contentContainer %}
+            {% endblock %}
+
+            <div class="col-md-3 pull-right sidebar">
+
+                {% include 'Blog/Widgets/gpwWidget.html.twig' %}
+
+                {% include 'Blog/Widgets/followingWidget.html.twig' %}
+
+                {% include 'Blog/Widgets/walletWidget.html.twig' %}
+            </div>
+        </div>
+
+    </div> <!-- /container -->
+
+    <div id="footer">
+        <div class="container">
+            <p class="text-muted">&copy; Domorosły inwestor</p>
+        </div>
+    </div>
+
+{% endblock %}
+
+
